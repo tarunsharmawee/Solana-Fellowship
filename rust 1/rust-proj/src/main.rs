@@ -1,10 +1,18 @@
-struct Result<T, B> {
-    x: T,
-    y: B,
-    z: B,
+use std::fs;
+
+enum Result<A, B> {
+    Ok(A),
+    Err(B),
 }
 
 fn main() {
-    let result = Result { x: 5, y: "Hello", z: "World" };
-    println!("Result x: {}, y: {}, z: {}", result.x, result.y, result.z);
+    let res = fs::read_to_string("example.txt");
+    match res {
+        Ok(content) =>{
+            println!("File content: {}", content)
+        },
+        Err(err) =>{
+            println!("error: {}", err)
+        }
+    }
 }
