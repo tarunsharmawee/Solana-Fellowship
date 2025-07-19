@@ -1,9 +1,14 @@
-fn main() {
-    let mut s1 = String::from("Hello ");
-    update_str(&mut s1);
-    print!("{}", s1);
+struct User {
+    name: String,
+    age: u32,
+    active : bool,
 }
 
-fn update_str(s: &mut String) {
-    s.push_str(" World");
-}   
+fn main(){
+    let user = User {
+        name: String::from("Tarun"),
+        age: 18,
+        active: true
+    };
+    print!("user is {} Years old and is {}ly active", user.age, user.active)
+}
