@@ -1,7 +1,9 @@
 fn main() {
- let s1 = String::from("Hello, world!");
- let s2 = &s1;
-
-    println!("{}", s2);
-    println!("{}", s1); 
+    let mut s1 = String::from("Hello ");
+    update_str(&mut s1);
+    print!("{}", s1);
 }
+
+fn update_str(s: &mut String) {
+    s.push_str(" World");
+}   
