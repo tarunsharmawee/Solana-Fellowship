@@ -1,14 +1,9 @@
-struct User {
-    name: String,
-    age: u32,
-    active : bool,
+enum Directions {
+    North,
+    East,
+    South,
+    West,
 }
-
 fn main(){
-    let user = User {
-        name: String::from("Tarun"),
-        age: 18,
-        active: true
-    };
-    print!("user is {} Years old and is {}ly active", user.age, user.active)
+    let my_direction = Directions::North;
 }
