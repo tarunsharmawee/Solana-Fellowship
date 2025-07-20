@@ -3,3 +3,4 @@ main.pbd
 /target/*
 cargo.lock
 cargo.toml
+.gitignore
