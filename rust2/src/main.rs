@@ -1,23 +1,15 @@
-fn main () {
-    let mut vec = Vec::new();
-    vec.push(1);
-    vec.push(2);
-    vec.push(3);
-    vec.push(4);
-    vec.push(5);
-    vec.push(6);
-    println!("{:?}",vec);
-    let even_val = even_val_vector(vec);
-    println!("{:?}",even_val);
-    
-}
-fn even_val_vector(vec: Vec<usize>)-> Vec<usize>{
-    let mut new_vec = Vec::new();
+use std::collections::HashMap;
 
-    for i in vec[0]..vec.len() + 1{
-        if i % 2 == 0 {
-            new_vec.push(i);
-        }
+fn group_value_by_key(vec: Vec<(String, i32)>) -> HashMap<String, i32> {
+    let mut hm = HashMap::new();
+    for (key, value) in vec{
+        hm.insert(key, value);
     }
-    return new_vec;
-}   
+    return hm; 
+}
+ 
+ fn main(){
+    let input_vec = vec![(String::from("Tarun"), 18), (String::from("Tarun"), 18)];
+    let hm = group_value_by_key(input_vec);
+    print!("{:?}", hm)
+}
