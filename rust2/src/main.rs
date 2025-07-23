@@ -1,13 +1,12 @@
-use std::thread;
+use std::{collections::btree_map::Values, sync::mpsc, thread::{self, spawn}};
 
-fn main(){
-    let handle = thread::spawn(||{
-        for i in 0..5{
-            println!("hi from spawned thread {i}")
-        }
+fn main() {
+    let (tx, rx) = mpsc::channel();
+    spawn(move|| {
+        tx.send(String::from("Hello World!")).unwrap()
     });
-    for i in 0..5 {
-        println!("hi from main thread {i}")
-    }
-    handle.join();
+
+    let value = rx.recv().unwrap();
+    println!("{}", value)
 }
+    
