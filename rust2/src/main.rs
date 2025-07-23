@@ -4,15 +4,19 @@ trait Summary {
     }
 }
 
+trait  Fix{
+    fn fix(&self) -> String{
+        return String::from("HI there 2");
+    }
+}
+
 struct User {
     name: String,
     age: u32,
-}
+} 
 
-struct Fix;
-impl Summary for User {}
-impl Summary for Fix{}
-impl Summary for String{}
+impl Summary for User{}
+impl Fix for User{}
 
 fn main() {
     let user = User {
@@ -22,6 +26,6 @@ fn main() {
     notify(user);
 }
 
-fn notify(u: impl Summary){
+fn notify<T: Summary + Fix>(u: T){
     println!("{}",u.summarize());
 }
