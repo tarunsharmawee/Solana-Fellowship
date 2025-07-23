@@ -1,31 +1,17 @@
-trait Summary {
-    fn summarize(&self) -> String{
-        return String::from("hi there");
-    }
-}
-
-trait  Fix{
-    fn fix(&self) -> String{
-        return String::from("HI there 2");
-    }
-}
-
-struct User {
-    name: String,
-    age: u32,
-} 
-
-impl Summary for User{}
-impl Fix for User{}
-
 fn main() {
-    let user = User {
-        name: String::from("Tarun"),
-        age: 18,
-    };
-    notify(user);
+    let ans;
+    let str1 = String::from("small");
+    {
+        let str2 = String::from("longer");
+        ans = longest(&str1, &str2); // this is giving error coz it's lifetime ends with the scope so u cant use it afterwardsgit a
+    }
+    print!("longer string is : {ans}")
 }
 
-fn notify<T: Summary + Fix>(u: T){
-    println!("{}",u.summarize());
+fn longest<'a>(str1: &'a str, str2: &'a str) -> &'a str {
+    if str2.len() > str2.len() {
+        return str2;
+    } else {
+        return str2;
+    }
 }
