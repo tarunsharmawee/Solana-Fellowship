@@ -1,8 +1,22 @@
-use std::option;
+trait Summary {
+    fn summarize(&self) -> String;
+}
 
-fn main(){
-    let word = String::from("Tarun Sharma");   
-    let word2 = &word[0..5];
-    println!("{word2}")
-    
+struct User {
+    name: String,
+    age: u32,
+}
+
+impl Summary for User {
+    fn summarize(&self) -> String {
+        return format!("tha name is {}, and the age is {}", self.name, self.age);
+    }
+}
+
+fn main() {
+    let user = User {
+        name: String::from("Tarun"),
+        age: 18,
+    };
+    println!("{}", user.summarize());
 }
