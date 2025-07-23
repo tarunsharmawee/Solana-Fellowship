@@ -1,12 +1,27 @@
-use std::{collections::btree_map::Values, sync::mpsc, thread::{self, spawn}};
+use std::{
+    collections::btree_map::Values,
+    sync::mpsc,
+    thread::{self, spawn},
+};
 
 fn main() {
     let (tx, rx) = mpsc::channel();
-    spawn(move|| {
-        tx.send(String::from("Hello World!")).unwrap()
-    });
 
-    let value = rx.recv().unwrap();
-    println!("{}", value)
+    for i in 0..10 {
+        let producer = tx.clone();
+        spawn(move || {
+            let mut sum: u64 = 0;
+            for j in i * 1000000..(i + 1 * 1000000) - 1 {
+                sum = sum + j;
+            }
+            producer.send(sum).unwrap()
+        });
+    }
+    drop(tx);
+
+    let mut final_sum = 0;
+    for val in rx{
+        final_sum = final_sum + val;
+    }
+    println!("{}", final_sum)
 }
-    
